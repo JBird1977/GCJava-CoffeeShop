@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="style.css">
 <title>Registration Form</title>
 </head>
 <body>
+<h1> Registration Form: </h1>
 <form action="/RegResult" method="post">
             <div class="form-group">
                 <label for="Name">First Name</label>
@@ -36,7 +38,7 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required minlength="8">
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary" value="submit">Register</button>
         </form>
 </body>
 </html>
