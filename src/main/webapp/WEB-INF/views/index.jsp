@@ -11,6 +11,7 @@
 	<h1>Test</h1>
 	<p>
 		<a href="RegForm">Registration Form</a>
+		<a href="productList">Product List</a>
 	</p>
 </body>
 </html>
