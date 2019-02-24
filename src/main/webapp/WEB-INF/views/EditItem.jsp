@@ -25,7 +25,7 @@
                 <input type="text" id="price" name="price" value=${product.price}>               
             </div>           
             <button type="submit" class="btn btn-primary" value="submit">Save</button>
-            <a href="/DeleteItem?id=${product.id}" class="btn btn-secondary">Delete Item</a>
+            <a href="/DeleteItem?id=${product.id}" class="btn btn-secondary" onclick="return confirm('Are you sure?')">Delete Item</a>
             
 </form>
 </body>
