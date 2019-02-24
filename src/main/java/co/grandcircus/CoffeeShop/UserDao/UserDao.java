@@ -7,41 +7,46 @@
 package co.grandcircus.CoffeeShop.UserDao;
 
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 import co.grandcircus.CoffeeShop.User;
 
+
 @Repository
+@Transactional
 public class UserDao {
     
-    @Autowired
-    JdbcTemplate jdbc;
+    @PersistenceContext
+    private EntityManager em;
     
     public List<User> findAll()
     {        
-        return jdbc.query("SELECT * FROM user_db", new BeanPropertyRowMapper<>(User.class));
+        return em.createQuery("FROM User", User.class).getResultList();
     }
     
     public User findById(long id)
     {
-        String sql = "SELECT FROM user_db WHERE id=?";
-        return jdbc.queryForObject(sql, new BeanPropertyRowMapper<>(User.class));
+        return null;
+      //  return em.queryForObject( new BeanPropertyRowMapper<>(User.class), id);
     }
      
     public void create(User user)
-    {
-        String sql = "INSERT INTO user_db(fName, lName, email, gender, password) VALUES(?, ?, ?, ?, ?)";
-        jdbc.update(sql, user.getfName(), user.getlName(), user.getEmail(), user.getGender(), user.getPassword());               
+    {  
+    em.persist(user);
+    }
+    
+    public void update(User user) {
+        em.merge(user);
     }
     
     public void delete(long id)
     {
-        String sql="DELETE FROM user_db WHERE id=?";
-        jdbc.update(sql, id);
+        User user = em.getReference(User.class, id);
+        em.remove(user);
     }
+    
     
     /*  String fName;
     String lName;

@@ -12,6 +12,8 @@
 	<p>
 		<a href="RegForm">Registration Form</a>
 		<a href="productList">Product List</a>
+		<a href="UserInfo">User Info</a>
+		<a href="Admin">Admin Console</a>
 	</p>
 </body>
 </html>

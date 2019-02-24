@@ -9,14 +9,14 @@
 </head>
 <body>
 <h1> Registration Form: </h1>
-<form action="/RegResult" method="post">
+<form action="/UserInfo/Add">
             <div class="form-group">
-                <label for="Name">First Name</label>
-                <input class="form-control" type = "text" id="fName" name="fName" required minlength="2" autocomplete="off">
+                <label for="firstName">First Name</label>
+                <input class="form-control" type = "text" id="firstName" name="firstName" required minlength="2" autocomplete="off">
             </div>
             <div class="form-group">
-                <label for="lname">Last Name</label>
-                <input class="form-control" id="lname" name="lName" required minlength="2" autocomplete="off">
+                <label for="lastname">Last Name</label>
+                <input class="form-control" id="lastName" name="lastName" required minlength="2" autocomplete="off">
             </div>
             <div class="form-group">
                 <label for="email">E-Mail</label>

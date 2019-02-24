@@ -5,11 +5,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>User List</title>
 </head>
 <body>
-    <!-- Hello, ${user.fName} -->
-    <table class="table">
+
+<div class="container">
+        <h1>User Info</h1>
+        <table class="table">
             <thead>
                 <tr>
                     <th>First Name</th><th>Last Name</th><th>Email</th><th>Gender</th>
@@ -18,15 +20,16 @@
             <tbody>
                 <c:forEach var="user" items="${user}">
                 <tr>
-                    <td>${user.fname}</td>
-                    <td>${user.lname}</td>
+                    <td><a href="/UserInfo/${user.id}">${user.firstName}</a></td>
+                    <td>${user.lastName}</td>
                     <td>${user.email}</td>
                     <td>${user.gender}</td>
-                    
                 </tr>
                 </c:forEach>
             </tbody>
         </table>
+          <a href="/RegForm" class="btn btn-secondary">Add User</a>
+    </div>
 
 </body>
 </html>
