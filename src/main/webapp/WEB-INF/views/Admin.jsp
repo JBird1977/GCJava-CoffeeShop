@@ -8,7 +8,9 @@
 <title>Administration Console</title>
 </head>
 <body>
-
+    <span>
+      Hello ${ profile.firstName } (stored in session)
+    </span>
 <div class="container">
         <h1>Products</h1>
         <table class="table">

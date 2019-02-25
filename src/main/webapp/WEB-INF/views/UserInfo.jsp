@@ -10,6 +10,9 @@
 <body>
 
 <div class="container">
+    <span>
+      Hello ${ profile.firstName } (stored in session)
+    </span>
         <h1>User Info</h1>
         <table class="table">
             <thead>
@@ -29,6 +32,7 @@
             </tbody>
         </table>
           <a href="/RegForm" class="btn btn-secondary">Add User</a>
+          <a href="/" class="btn btn-secondary">Home</a>
     </div>
 
 </body>

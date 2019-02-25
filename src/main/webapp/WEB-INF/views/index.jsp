@@ -9,6 +9,9 @@
 </head>
 <body>
 	<h1>Test</h1>
+	<span>
+      Hello ${ profile.firstName } (stored in session)
+    </span>
 	<p>
 		<a href="RegForm">Registration Form</a>
 		<a href="productList">Product List</a>

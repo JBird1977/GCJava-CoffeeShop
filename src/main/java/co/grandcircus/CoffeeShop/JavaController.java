@@ -2,15 +2,19 @@ package co.grandcircus.CoffeeShop;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.grandcircus.CoffeeShop.ProductsDao.ProductsDao;
 import co.grandcircus.CoffeeShop.UserDao.UserDao;
+
 
 
 
@@ -28,41 +32,11 @@ public class JavaController {
         
         return new ModelAndView("index");
     }
-    
-    
-    @RequestMapping("/productList")
-    public ModelAndView list() 
-    {
-        List<Product> leListofProduct = productsDao.findAll();
-        return new ModelAndView("list", "product", leListofProduct);
-    }
-    
-    
-    
-   
-    
-    /*@RequestMapping("/rooms/{id}")
-    public ModelAndView detail(@PathVariable("id") Long id) {
-        Room room = roomsDao.findById(id);
-        
-        return new ModelAndView("detail", "room", room);
-    }*/
-    
-    /*@RequestMapping("/productList/{id}")
-    public ModelAndView detail(@PathVariable("id") Long id)
-    {
-        Product product = productsDao.findById(id);
-       
-        return null;
-    }*/
-    
-    
-  
-    
+ 
     @RequestMapping("/RegForm")
-    public ModelAndView showRegForm()
+    public ModelAndView showRegForm(@SessionAttribute(name="profile", required=false) User user)
     {
-        return new ModelAndView("RegForm");
+        return new ModelAndView("RegForm", "user", user);
     }    
     
     @RequestMapping("/UserInfo")
@@ -74,8 +48,9 @@ public class JavaController {
     }
     
     @RequestMapping("/UserInfo/Add")
-    public ModelAndView addUser(User user)
-    {
+    public ModelAndView addUser(User user, HttpSession session)
+    { 
+        session.setAttribute("profile", user);
         userDao.update(user);
         return new ModelAndView("redirect:/UserInfo");
     }
@@ -86,6 +61,14 @@ public class JavaController {
         List<Product> leListofProduct = productsDao.findAll();
         return new ModelAndView("Admin", "product", leListofProduct);
     }
+    
+    @RequestMapping("/productList")
+    public ModelAndView list() 
+    {
+        List<Product> leListofProduct = productsDao.findAll();
+        return new ModelAndView("list", "product", leListofProduct);
+    }
+
     
     @RequestMapping("/AddItem")
     public ModelAndView showAddItemPage()
@@ -125,7 +108,35 @@ public class JavaController {
         return new ModelAndView("redirect:/Admin");
     }
     
+    /*@RequestMapping("/rooms/{id}")
+    public ModelAndView detail(@PathVariable("id") Long id) {
+        Room room = roomsDao.findById(id);
+        
+        return new ModelAndView("detail", "room", room);
+    }*/
     
+    /*@RequestMapping("/productList/{id}")
+    public ModelAndView detail(@PathVariable("id") Long id)
+    {
+        Product product = productsDao.findById(id);
+       
+        return null;
+    }*/
+
+   /* // Use @SessionAttribute to get item from session
+    @RequestMapping("/edit-profile")
+    public ModelAndView showEditProfile(@SessionAttribute(name="profile", required=false) User user) {
+        return new ModelAndView("edit-profile", "user", user);
+    }
+    
+    // Use HttpSession to set an attribute on the session
+    @PostMapping("/edit-profile")
+    public ModelAndView submitEditProfile(User user, HttpSession session) 
+    {
+        session.setAttribute("profile", user);
+        ModelAndView mav = new ModelAndView("redirect:/");
+        return mav;
+    } */
     
    /* @PostMapping("/RegResult")
     public ModelAndView submitRegForm(User userEntry)

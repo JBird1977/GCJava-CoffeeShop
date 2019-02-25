@@ -8,6 +8,9 @@
 <title>Registration Form</title>
 </head>
 <body>
+    <span>
+      Hello ${ profile.firstName } (stored in session)
+    </span>
 <h1> Registration Form: </h1>
 <form action="/UserInfo/Add">
             <div class="form-group">

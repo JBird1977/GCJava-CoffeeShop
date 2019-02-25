@@ -8,6 +8,9 @@
 </head>
 <body>
 <div class="container">
+    <span>
+      Hello ${ profile.firstName } (stored in session)
+    </span>
         <h1>Products</h1>
         <table class="table">
             <thead>
