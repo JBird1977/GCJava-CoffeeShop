@@ -27,7 +27,7 @@
             </div>            
             <button type="submit" class="btn btn-primary" value="submit">Add Item</button>
         </form>
-
+    <a href="/" class="btn btn-secondary">Home</a>
 
 </body>
 </html>

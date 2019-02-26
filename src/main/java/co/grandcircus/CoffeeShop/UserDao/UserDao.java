@@ -8,10 +8,12 @@ package co.grandcircus.CoffeeShop.UserDao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 import co.grandcircus.CoffeeShop.User;
+
 
 
 @Repository
@@ -31,7 +33,19 @@ public class UserDao {
         return null;
       //  return em.queryForObject( new BeanPropertyRowMapper<>(User.class), id);
     }
-     
+    
+    public User findByUserName(String name)
+    {       
+        try 
+        {
+            return em.createQuery("FROM User WHERE username = :username", User.class)
+                    .setParameter("username", name)
+                    .getSingleResult();
+        } catch (NoResultException ex) 
+        {
+            return null;
+        }
+    }
     public void create(User user)
     {  
     em.persist(user);

@@ -17,6 +17,8 @@
 		<a href="productList">Product List</a>
 		<a href="UserInfo">User Info</a>
 		<a href="Admin">Admin Console</a>
+		<a href="Login">Login</a>
+		<a href="Logout">Logout</a>
 	</p>
 </body>
 </html>

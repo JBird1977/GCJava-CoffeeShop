@@ -11,8 +11,13 @@
     <span>
       Hello ${ profile.firstName } (stored in session)
     </span>
-<h1> Registration Form: </h1>
+<h1> Registration Form </h1>
 <form action="/UserInfo/Add">
+
+            <div class="form-group">
+                <label for="userName">User Name</label>
+                <input class="form-control" type = "text" id="userName" name="userName" required minlength="2" autocomplete="off">
+            </div>
             <div class="form-group">
                 <label for="firstName">First Name</label>
                 <input class="form-control" type = "text" id="firstName" name="firstName" required minlength="2" autocomplete="off">
@@ -35,13 +40,12 @@
                 <label for="age">Age</label>
                 <input type="number" id="age" name="age">
             </div>
-            
-            
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required minlength="8">
             </div>
             <button type="submit" class="btn btn-primary" value="submit">Register</button>
+            <a href="/" class="btn btn-secondary">Home</a>
         </form>
 </body>
 </html>

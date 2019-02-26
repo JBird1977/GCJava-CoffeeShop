@@ -23,7 +23,8 @@
             <tbody>
                 <c:forEach var="user" items="${user}">
                 <tr>
-                    <td><a href="/UserInfo/${user.id}">${user.firstName}</a></td>
+                    <td><a href="/UserInfo/${user.id}">${user.userName}</a></td>
+                    <td>${user.firstName}</td>
                     <td>${user.lastName}</td>
                     <td>${user.email}</td>
                     <td>${user.gender}</td>

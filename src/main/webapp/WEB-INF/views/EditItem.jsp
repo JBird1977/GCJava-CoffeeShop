@@ -28,5 +28,6 @@
             <a href="/DeleteItem?id=${product.id}" class="btn btn-secondary" onclick="return confirm('Are you sure?')">Delete Item</a>
             
 </form>
+<a href="/" class="btn btn-secondary">Home</a>
 </body>
 </html>

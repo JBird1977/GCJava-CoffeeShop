@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.grandcircus.CoffeeShop.ProductsDao.ProductsDao;
 import co.grandcircus.CoffeeShop.UserDao.UserDao;
+
 
 
 
@@ -32,7 +34,47 @@ public class JavaController {
         
         return new ModelAndView("index");
     }
- 
+    
+    @RequestMapping("/Admin")
+    public ModelAndView showAdminPage()
+    {
+        List<Product> leListofProduct = productsDao.findAll();
+        return new ModelAndView("Admin", "product", leListofProduct);
+    }
+    
+    @RequestMapping("/Login")
+    public ModelAndView showLoginForm() 
+    {
+        return new ModelAndView("Login");
+    }
+    
+    @PostMapping("/Login")
+    // get the username and password from the form when it's submitted.
+    public ModelAndView submitLoginForm(
+            @RequestParam("username") String username,
+            @RequestParam("password") String password,
+            HttpSession session, RedirectAttributes redir) 
+    {
+        User user = userDao.findByUserName(username);
+        if (user == null || !user.getPassword().equals(password))
+        {
+            return new ModelAndView("Login", "message", "Incorrect username or password.");
+        } else 
+        {
+            session.setAttribute("profile", user);
+            return new ModelAndView("index");
+        }
+        
+        
+    }
+    
+    @RequestMapping("/Logout")
+    public ModelAndView logout(HttpSession session, RedirectAttributes redir) {
+        session.invalidate();
+        redir.addFlashAttribute("Logged out.");
+        return new ModelAndView("redirect:/");
+    }
+    
     @RequestMapping("/RegForm")
     public ModelAndView showRegForm(@SessionAttribute(name="profile", required=false) User user)
     {
@@ -50,17 +92,11 @@ public class JavaController {
     @RequestMapping("/UserInfo/Add")
     public ModelAndView addUser(User user, HttpSession session)
     { 
-        session.setAttribute("profile", user);
+        
         userDao.update(user);
         return new ModelAndView("redirect:/UserInfo");
     }
     
-    @RequestMapping("/Admin")
-    public ModelAndView showAdminPage()
-    {
-        List<Product> leListofProduct = productsDao.findAll();
-        return new ModelAndView("Admin", "product", leListofProduct);
-    }
     
     @RequestMapping("/productList")
     public ModelAndView list() 
